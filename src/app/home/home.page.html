@@ -1,20 +1,21 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <app-cidades
+    [cidadesDisplay]="cidadesComponent"
+    (cidadesDisplayChange)="toggleCidadesComponentEvent($event)"
+    [cidades]="cidades"
+    (cidadesChange)="updateCidade($event)"
+  ></app-cidades>
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide *ngFor="let cidade of cidades">
+      <app-home-child [local]="cidade"></app-home-child>
+    </ion-slide>
+  </ion-slides>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <nav>
+    <img
+      src="/assets/icon/bars.svg"
+      alt="bars"
+      (click)="toggleCidadesComponent()"
+    />
+  </nav>
 </ion-content>
